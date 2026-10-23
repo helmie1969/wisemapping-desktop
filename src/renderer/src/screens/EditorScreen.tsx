@@ -71,7 +71,7 @@ function EditorScreen({ mindmapId, onBack, isDarkMode }: EditorScreenProps) {
             setMapInfo(info);
 
             // Create persistence manager
-            persistenceRef.current = new ElectronPersistenceManager(mindmapId);
+            persistenceRef.current = new ElectronPersistenceManager();
         } catch (error) {
             console.error('Failed to load mindmap:', error);
             alert('Failed to load mindmap');

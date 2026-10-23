@@ -42,6 +42,11 @@ export class MapInfoImpl implements MapInfo {
         return Promise.resolve(false);
     }
 
+    updateStarred(_value: boolean): Promise<void> {
+        // Starring only exists in the online version; local maps have no starred state.
+        return Promise.resolve();
+    }
+
     setTitle(title: string): void {
         this.title = title;
     }
@@ -53,7 +58,7 @@ export class MapInfoImpl implements MapInfo {
         // For now, updating the local state suffices as AppBar calls this.
     }
 
-    getCreator(): string {
+    getCreatorFullName(): string {
         return this.creator;
     }
 

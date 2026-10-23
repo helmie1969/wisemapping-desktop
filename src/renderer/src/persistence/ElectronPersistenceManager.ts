@@ -18,13 +18,6 @@
 import { PersistenceManager } from '@wisemapping/mindplot';
 
 export class ElectronPersistenceManager extends PersistenceManager {
-    private mapId: string;
-
-    constructor(mapId: string) {
-        super();
-        this.mapId = mapId;
-    }
-
     async loadMapDom(mapId: string): Promise<Document> {
         try {
             const xml = (await window.electron.ipcRenderer.invoke('mindmap:load', mapId)) as string;

@@ -16,7 +16,7 @@
  *   limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import {
     FormControl,
@@ -30,16 +30,14 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
-    DialogActions,
-    Typography,
-    Alert
+    DialogActions
 } from '@mui/material';
 import {
     ImageExporterFactory,
     TextExporterFactory
 } from '@wisemapping/editor';
 import type { SizeType, Designer, Mindmap } from '@wisemapping/editor';
-import ThemeType from '@wisemapping/mindplot/src/components/model/ThemeType';
+import type { ThemeType } from '@wisemapping/mindplot';
 
 type ExportFormat = 'svg' | 'jpg' | 'png' | 'pdf' | 'txt' | 'mm' | 'mmx' | 'wxml' | 'md';
 type ExportGroup = 'image' | 'document' | 'mindmap-tool';
@@ -91,7 +89,7 @@ const ExportDialog = ({ isOpen, onClose, mindmap, designer }: ExportDialogProps)
             if (designer) {
                 const workspace = designer.getWorkSpace();
                 svgElement = workspace.getSVGElement();
-                size = designer.getWidgetManager().getContainerSize(); // Or window size
+                size = { width: window.innerWidth, height: window.innerHeight };
 
                 if (originalTheme !== exportTheme) {
                     // Apply theme for export (if needed/wanted)
